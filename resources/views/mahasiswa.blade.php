@@ -26,8 +26,12 @@
     <h2>Tambah Mahasiswa</h2>
     <form action="{{ route('mahasiswa.store') }}" method="POST">
         @csrf
-        <p>NIM<br><input type="text" name="nim" value="{{ old('nim') }}"></p>
-        <p>Nama<br><input type="text" name="nama" value="{{ old('nama') }}"></p>
+        <p>NIM<br>
+            <input type="text" name="nim" value="{{ old('nim') }}">
+        </p>
+        <p>Nama<br>
+            <input type="text" name="nama" value="{{ old('nama') }}">
+        </p>
         <p>Email<br><input type="email" name="email" value="{{ old('email') }}"></p>
         <p>Usia<br><input type="number" name="usia" value="{{ old('usia') }}"></p>
         <p>Program Studi<br>
@@ -67,8 +71,12 @@
     <h2>Daftar Mahasiswa</h2>
     <table border="1" cellpadding="6" cellspacing="0">
         <tr>
-            <th>NIM</th><th>Nama</th><th>Email</th>
-            <th>Usia</th><th>Program Studi</th><th>Aksi</th>
+            <th>NIM</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Usia</th>
+            <th>Program Studi</th>
+            <th>Aksi</th>
         </tr>
         @forelse ($daftarMahasiswa as $mahasiswa)
             <tr>
@@ -78,17 +86,11 @@
                 <td>{{ $mahasiswa['usia'] }}</td>
                 <td>{{ $mahasiswa['nama_prodi'] }}</td>
                 <td>
-                    <a href="{{ route('mahasiswa.edit', $mahasiswa['id']) }}">
-                        Ubah
-                    </a>
-                    <form action="{{ route('mahasiswa.destroy', $mahasiswa['id']) }}"
-                          method="POST">
+                    <a href="{{ route('mahasiswa.edit', $mahasiswa['id']) }}"> Ubah </a>
+                    <form action="{{ route('mahasiswa.destroy', $mahasiswa['id']) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit"
-                            onclick="return confirm('Hapus data ini?')">
-                            Hapus
-                        </button>
+                        <button type="submit" onclick="return confirm('Hapus data ini?')"> Hapus </button>
                     </form>
                 </td>
             </tr>
