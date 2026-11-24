@@ -18,5 +18,9 @@ Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('buku', BukuController::class)->except('show');
+    Route::get('/buku', [BukuController::class, 'index'])->name('buku.index');
+
+    Route::middleware('can:kelola-buku')->group(function () {
+        Route::resource('buku', BukuController::class)->except(['index', 'show']);
+    });
 });
